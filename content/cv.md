@@ -7,7 +7,7 @@
 
 **Southeast University**, B.E. in Robot Engineering, *Sep. 2020 - Jun. 2024*
 - GPA: 87.5 / 100
-- Advisor: Prof. Chengxin Wang
+- Advisor: Prof. Chenxing Wang
 
 ## Research & Work Experience
 
