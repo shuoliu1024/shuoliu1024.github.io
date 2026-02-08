@@ -1,6 +1,6 @@
 ## Education
 
-**University of Washington**, M.S. in Electical and Computer Engineering, *Sep. 2024 - Present*
+**University of Washington**, M.S. in Electrical and Computer Engineering, *Sep. 2024 - Present*
 - GPA: 4.00 / 4.00
 - Research focus: Robot Learning
 - Advisor: Prof. Ranjay Krishna and Dr. Jiafei Duan
@@ -27,14 +27,14 @@ Student Collaborator  *(Apr. 2025 - Oct. 2025)*
 
 Research Collaborator *(Jan. 2025 - April. 2025)*
 
-- Contributed to the FORGE-Tree project. Contributed to method and paper writting.
+- Contributed to the FORGE-Tree project. Contributed to method and paper writing.
 
 
 **Hangzhou Qiancen Intelligent Technology Co., Ltd.**
 
 Research Engineer Intern *(Mar. 2024 - Aug. 2024)*
 
-- 3D reconstruction of autonomous driving scene based on 3D gaussian splatting.
+- 3D reconstruction of autonomous driving scenes based on 3D Gaussian splatting.
 
 ## Skills
 
