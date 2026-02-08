@@ -1,6 +1,6 @@
 ## Education
 
-**University of Washington**, M.S. inElectical and Computer Engineering, *Sep. 2024 - Present*
+**University of Washington**, M.S. in Electical and Computer Engineering, *Sep. 2024 - Present*
 - GPA: 4.00 / 4.00
 - Research focus: Robot Learning
 - Advisor: Prof. Ranjay Krishna and Dr. Jiafei Duan
