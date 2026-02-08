@@ -1,0 +1,44 @@
+[site]
+title = "Shuo Liu's personal page"
+description = "M.S. student at ECE of the University of Washington."
+favicon = "/happyboy.JPG"
+last_updated = "Feb. 7, 2026"
+
+[author]
+name = "Shuo Liu"
+title = ["M.S. @ UW ECE", "Student Researcher @ AI2"]
+avatar = "/shuoliu.jpg"
+
+[social]
+# Contact information (leave blank or delete to hide)
+
+email = "shuoliu.ai@gmail.com"
+google_scholar = "https://scholar.google.com/citations?hl=en&user=gAs7VL0AAAAJ"
+github = "https://github.com/Treeeplanter"
+linkedin = "https://www.linkedin.com/in/shuo-liu-029401332/"
+
+[features]
+# Show a like button on the about page
+enable_likes = true
+
+# Display all subpages on a single page
+enable_one_page_mode = false
+
+[[navigation]]
+title = "About"
+type = "page"
+target = "about"
+href = "/"
+
+[[navigation]]
+title = "Publications"
+type = "page"
+target = "publications"
+href = "/publications"
+
+
+[[navigation]]
+title = "CV"
+type = "page"
+target = "cv"
+href = "/cv"

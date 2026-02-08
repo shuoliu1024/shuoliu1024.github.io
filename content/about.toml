@@ -1,0 +1,31 @@
+type = "about"
+title = "About"
+
+[profile]
+# 可以用 research_interests 数组列出研究兴趣（每项一行）
+# research_interests = ["Robot Learning", "Computer Vision"]
+
+# 或者用 bio_text 放一段介绍文字
+# bio_text = "My research interests lie broadly in robot learning. In particular, I focus on developing generalist robotic manipulation policies that leverage strong priors, by optimizing both the data curation and model architectures."
+
+[[sections]]
+id = "about"
+type = "markdown"
+source = "bio.md"
+title = "About"
+
+[[sections]]
+id = "news"
+type = "list"
+title = "News"
+source = "news.toml"
+
+[[sections]]
+id = "featured_publications"
+type = "publications"
+title = "Selected Publications"
+filter = "selected"
+limit = 5
+
+
+
