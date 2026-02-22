@@ -12,11 +12,10 @@ import { SiteConfig } from '@/lib/config';
 
 interface NavigationProps {
   items: SiteConfig['navigation'];
-  siteTitle: string;
   enableOnePageMode?: boolean;
 }
 
-export default function Navigation({ items, siteTitle, enableOnePageMode }: NavigationProps) {
+export default function Navigation({ items, enableOnePageMode }: NavigationProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [activeHash, setActiveHash] = useState('');

@@ -101,7 +101,6 @@ export default function RootLayout({
         <ThemeProvider>
           <Navigation
             items={config.navigation}
-            siteTitle={config.site.title}
             enableOnePageMode={config.features.enable_one_page_mode}
           />
           <main className="min-h-screen pt-16 lg:pt-20">
