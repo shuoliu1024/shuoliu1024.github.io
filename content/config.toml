@@ -1,11 +1,12 @@
 [site]
-title = "Shuo Liu's personal page"
+title = "Shuo Liu"
 description = "M.S. student at ECE of the University of Washington."
 favicon = "/happyboy.JPG"
 last_updated = "Feb. 7, 2026"
 
 [author]
 name = "Shuo Liu"
+name_zh = "刘朔"
 title = ["M.S. @ UW ECE", "Student Researcher @ AI2"]
 avatar = "/shuoliu.jpg"
 

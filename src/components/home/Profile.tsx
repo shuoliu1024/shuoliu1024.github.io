@@ -125,6 +125,11 @@ export default function Profile({ author, social, features, researchInterests, b
             <div className="text-center mb-6">
                 <h1 className="text-3xl font-serif font-bold text-primary mb-2">
                     {author.name}
+                    {author.name_zh && (
+                        <span className="ml-2" style={{ fontFamily: 'var(--font-kai)' }}>
+                            {author.name_zh}
+                        </span>
+                    )}
                 </h1>
                 {Array.isArray(author.title) ? (
                     author.title.map((line, index) => (

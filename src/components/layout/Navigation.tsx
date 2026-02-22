@@ -95,19 +95,8 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16 lg:h-20">
-                {/* Logo/Name */}
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex-shrink-0"
-                >
-                  <Link
-                    href="/"
-                    className="text-xl lg:text-2xl font-serif font-semibold text-primary hover:text-accent transition-colors duration-200"
-                  >
-                    {siteTitle}
-                  </Link>
-                </motion.div>
+                {/* Empty placeholder for layout balance */}
+                <div className="flex-shrink-0" />
 
                 {/* Desktop Navigation */}
                 <div className="hidden lg:block">
