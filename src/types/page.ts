@@ -28,3 +28,38 @@ export interface CardPageConfig extends BasePageConfig {
     type: 'card';
     items: CardItem[];
 }
+
+export interface EducationData {
+    type: 'education';
+    title?: string;
+    items: Array<{
+        institution: string;
+        degree: string;
+        date: string;
+        logo?: string;
+        details?: string[];
+    }>;
+}
+
+export interface ExperienceData {
+    type: 'experience';
+    title?: string;
+    items: Array<{
+        organization: string;
+        group?: string;
+        logo?: string;
+        roles?: Array<{ title: string; date: string }>;
+        bullets?: Array<{ text: string }>;
+    }>;
+}
+
+export interface AwardsData {
+    type: 'awards';
+    title?: string;
+    items: Array<{
+        title: string;
+        organization?: string;
+        date?: string;
+        content?: string;
+    }>;
+}

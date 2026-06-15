@@ -4,9 +4,8 @@ title = "About"
 [profile]
 # 可以用 research_interests 数组列出研究兴趣（每项一行）
 # research_interests = ["Robot Learning", "Computer Vision"]
-
 # 或者用 bio_text 放一段介绍文字
-# bio_text = "My research interests lie broadly in robot learning. In particular, I focus on developing generalist robotic manipulation policies that leverage strong priors, by optimizing both the data curation and model architectures."
+# bio_text = "..."
 
 [[sections]]
 id = "about"
@@ -21,11 +20,31 @@ title = "News"
 source = "news.toml"
 
 [[sections]]
-id = "featured_publications"
+id = "publications"
 type = "publications"
-title = "Selected Publications"
-filter = "selected"
-limit = 5
+title = "Publications"
+source = "publications.bib"
 
+[[sections]]
+id = "education"
+type = "education"
+title = "Education"
+source = "education.toml"
 
+[[sections]]
+id = "experience"
+type = "experience"
+title = "Experience"
+source = "experience.toml"
 
+[[sections]]
+id = "services"
+type = "services"
+title = "Services"
+source = "services.toml"
+
+[[sections]]
+id = "awards"
+type = "awards"
+title = "Awards"
+source = "awards.toml"

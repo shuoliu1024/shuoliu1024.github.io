@@ -7,6 +7,10 @@ export interface Author {
   isHighlighted?: boolean;
   isCorresponding?: boolean;
   isCoAuthor?: boolean;
+  isEqualContribution?: boolean;  // * equal contribution
+  isSecondAuthor?: boolean;       // † second authors
+  isEqualAdvising?: boolean;      // ‡ equal advising
+  isCoreContributor?: boolean;    // § core contributors
 }
 
 export interface Publication {

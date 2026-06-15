@@ -1,9 +1,7 @@
-type = "card"
+type = "services"
 title = "Services"
-description = "Professional services and community involvement."
 
 [[items]]
-title = "Reviewer"
-subtitle = "Journal Name"
-date = "2024"
-content = "Reviewed papers for..."
+role = "Reviewer"
+venue = "FMEA Workshop, CVPR 2026"
+date = "2026"

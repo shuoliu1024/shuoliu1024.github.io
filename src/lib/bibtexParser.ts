@@ -66,6 +66,11 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
     const arxivId = tags.arxiv?.replace(/[{}]/g, '');
     const pdfUrl = tags.pdf?.replace(/[{}]/g, '');
 
+    // Parse awards: split by ';' for multiple entries
+    const awards = tags.awards
+      ? cleanBibTeXString(tags.awards).split(';').map(a => a.trim()).filter(a => a.length > 0)
+      : undefined;
+
     // Create publication object
     const publication: Publication = {
       id: entry.citationKey || tags.id || `pub-${Date.now()}-${index}`,
@@ -96,9 +101,10 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
       webpage,
       arxivId,
       pdfUrl,
+      awards,
 
       // Store original BibTeX (excluding custom fields)
-      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'video', 'webpage', 'arxiv', 'pdf', 'description', 'keywords', 'code']),
+      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'video', 'webpage', 'arxiv', 'pdf', 'description', 'keywords', 'code', 'awards']),
     };
 
     // Clean up undefined fields
@@ -126,7 +132,7 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
   });
 }
 
-function parseAuthors(authorsStr: string, highlightName?: string): Array<{ name: string; isHighlighted?: boolean; isCorresponding?: boolean; isCoAuthor?: boolean }> {
+function parseAuthors(authorsStr: string, highlightName?: string): Array<{ name: string; isHighlighted?: boolean; isCorresponding?: boolean; isCoAuthor?: boolean; isEqualContribution?: boolean; isSecondAuthor?: boolean; isEqualAdvising?: boolean; isCoreContributor?: boolean }> {
   if (!authorsStr) return [];
 
   // Split by "and" and clean up
@@ -136,14 +142,23 @@ function parseAuthors(authorsStr: string, highlightName?: string): Array<{ name:
       // Clean up the author name
       let name = author.trim();
 
-      // Check for corresponding author marker
-      const isCorresponding = name.includes('*');
-
-      // Check for co-author marker (#)
+      // Check for markers:
+      // * equal contribution
+      // † or + second authors  
+      // ‡ or = equal advising
+      // § or $ core contributors
+      // # co-author (legacy, now used for equal contribution display)
+      const isEqualContribution = name.includes('*');
+      const isSecondAuthor = name.includes('†') || name.includes('+');
+      const isEqualAdvising = name.includes('‡') || name.includes('=');
+      const isCoreContributor = name.includes('§') || name.includes('$');
       const isCoAuthor = name.includes('#');
+      
+      // isCorresponding is now handled by isEqualAdvising (‡)
+      const isCorresponding = isEqualAdvising;
 
       // Remove special markers from name
-      name = name.replace(/[*#]/g, '');
+      name = name.replace(/[*#†‡§+=$]/g, '');
 
       // Handle "Last, First" format
       if (name.includes(',')) {
@@ -174,6 +189,10 @@ function parseAuthors(authorsStr: string, highlightName?: string): Array<{ name:
         isHighlighted,
         isCorresponding,
         isCoAuthor,
+        isEqualContribution,
+        isSecondAuthor,
+        isEqualAdvising,
+        isCoreContributor,
       };
     })
     .filter(author => author.name);

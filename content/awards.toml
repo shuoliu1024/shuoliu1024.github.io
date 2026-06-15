@@ -1,27 +1,23 @@
-type = "card"
+type = "awards"
 title = "Awards"
-description = "Honors and awards I have received."
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
+title = "Outstanding Paper Award & Oral"
+organization = "FMEA Workshop, CVPR 2026"
+date = "2026"
+
+[[items]]
+title = "Best Paper Runner-up Award"
+organization = "3D LLM-VLA Workshop, CVPR 2026"
+date = "2026"
+
+[[items]]
+title = "Best Paper Runner-up Award"
+organization = "Rational Robots Workshop, CoRL 2025"
 date = "2025"
-content = "Description of the award."
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2024"
-content = "Description of the award."
+title = "Best Paper Nominee"
+organization = "Data Workshop, CoRL 2025"
+date = "2025"
 
-[[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2023"
-content = "Description of the award."
-
-[[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2022"
-content = "Description of the award."

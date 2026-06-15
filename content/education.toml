@@ -1,0 +1,25 @@
+type = "education"
+title = "Education"
+
+[[items]]
+institution = "University of Washington"
+degree = "M.S. in Electrical and Computer Engineering"
+date = "Sep. 2024 - Mar. 2026"
+logo = "/logos/uw.png"
+logo_dark = "/logos/uw-dark.png"
+details = [
+    "GPA: 3.99/4.00",
+    "Research focus: Robot Learning",
+    "Advisor: Prof. Ranjay Krishna and Prof. Jiafei Duan",
+]
+
+[[items]]
+institution = "Southeast University"
+degree = "B.E. in Robot Engineering"
+date = "Sep. 2020 - Jun. 2024"
+logo = "/logos/seu.png"
+details = [
+    "GPA: 87.5/100",
+    "Research focus: 3D reconstruction and SLAM",
+    "Advisor: Prof. Chenxing Wang",
+]

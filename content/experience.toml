@@ -1,0 +1,27 @@
+type = "experience"
+title = "Experience"
+
+[[items]]
+organization = "Allen Institute for Artificial Intelligence"
+group = "Perceptual Reasoning and Interaction Research (PRIOR)"
+logo = "/logos/ai2.png"
+advisor = "Advised by Prof. Ranjay Krishna and Prof. Jiafei Duan"
+
+[[items.roles]]
+title = "Student Researcher"
+date = "Nov. 2025 - Present"
+
+[[items.roles]]
+title = "Student Collaborator"
+date = "Apr. 2025 - Oct. 2025"
+
+
+[[items]]
+organization = "Texas A&M University"
+group = "Trustworthy, Autonomous, Human-Centered, and Embodied Intelligence (TACO)"
+logo = "/logos/tamu.png"
+advisor = "Advised by Prof. Zhengzhong Tu"
+
+[[items.roles]]
+title = "Research Collaborator"
+date = "Jan. 2025 - Apr. 2025"

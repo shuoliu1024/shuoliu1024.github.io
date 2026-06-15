@@ -7,7 +7,6 @@ last_updated = "Feb. 7, 2026"
 [author]
 name = "Shuo Liu"
 name_zh = "刘朔"
-title = ["M.S. @ UW ECE", "Student Researcher @ AI2"]
 avatar = "/shuoliu.jpg"
 
 [social]
@@ -23,7 +22,7 @@ linkedin = "https://www.linkedin.com/in/shuo-liu-029401332/"
 enable_likes = true
 
 # Display all subpages on a single page
-enable_one_page_mode = false
+enable_one_page_mode = true
 
 [[navigation]]
 title = "About"
@@ -32,14 +31,37 @@ target = "about"
 href = "/"
 
 [[navigation]]
+title = "News"
+type = "page"
+target = "news"
+href = "/"
+
+[[navigation]]
 title = "Publications"
 type = "page"
 target = "publications"
-href = "/publications"
-
+href = "/"
 
 [[navigation]]
-title = "CV"
+title = "Education"
 type = "page"
-target = "cv"
-href = "/cv"
+target = "education"
+href = "/"
+
+[[navigation]]
+title = "Experience"
+type = "page"
+target = "experience"
+href = "/"
+
+[[navigation]]
+title = "Services"
+type = "page"
+target = "services"
+href = "/"
+
+[[navigation]]
+title = "Awards"
+type = "page"
+target = "awards"
+href = "/"

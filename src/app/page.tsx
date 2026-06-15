@@ -3,131 +3,101 @@ import { getMarkdownContent, getBibtexContent, getTomlContent, getPageConfig } f
 import { parseBibTeX } from '@/lib/bibtexParser';
 import Profile from '@/components/home/Profile';
 import About from '@/components/home/About';
-import SelectedPublications from '@/components/home/SelectedPublications';
+import Publications from '@/components/home/Publications';
 import News, { NewsItem } from '@/components/home/News';
-import PublicationsList from '@/components/publications/PublicationsList';
-import TextPage from '@/components/pages/TextPage';
-import CardPage from '@/components/pages/CardPage';
-
+import Education, { EducationItem } from '@/components/home/Education';
+import Experience, { ExperienceItem } from '@/components/home/Experience';
+import Awards, { AwardItem } from '@/components/home/Awards';
+import Services, { ServiceItem } from '@/components/home/Services';
 import { Publication } from '@/types/publication';
-import { BasePageConfig, PublicationPageConfig, TextPageConfig, CardPageConfig } from '@/types/page';
 
-// Define types for section config
 interface SectionConfig {
   id: string;
-  type: 'markdown' | 'publications' | 'list';
+  type: 'markdown' | 'publications' | 'list' | 'education' | 'experience' | 'awards' | 'services';
   title?: string;
   source?: string;
-  filter?: string;
-  limit?: number;
-  content?: string;
-  publications?: Publication[];
-  items?: NewsItem[];
 }
 
-type PageData =
-  | { type: 'about', id: string, sections: SectionConfig[] }
-  | { type: 'publication', id: string, config: PublicationPageConfig, publications: Publication[] }
-  | { type: 'text', id: string, config: TextPageConfig, content: string }
-  | { type: 'card', id: string, config: CardPageConfig };
+interface AboutPageConfig {
+  type: 'about';
+  title: string;
+  profile?: { research_interests?: string[]; bio_text?: string };
+  sections: SectionConfig[];
+}
 
 export default function Home() {
   const config = getConfig();
-  const enableOnePageMode = config.features.enable_one_page_mode;
 
-  // Always load about page config for profile info
-  const aboutConfig = getPageConfig('about');
-  const profileConfig = (aboutConfig as { profile?: { research_interests?: string[], bio_text?: string } })?.profile;
+  const aboutConfig = getPageConfig<AboutPageConfig>('about');
+  const profileConfig = aboutConfig?.profile;
   const researchInterests = profileConfig?.research_interests;
   const bioText = profileConfig?.bio_text;
+  const sections: SectionConfig[] = aboutConfig?.sections ?? [];
 
-  // Helper function to process sections (for about page)
-  const processSections = (sections: SectionConfig[]) => {
-    return sections.map((section: SectionConfig) => {
-      switch (section.type) {
-        case 'markdown':
-          return {
-            ...section,
-            content: section.source ? getMarkdownContent(section.source) : ''
-          };
-        case 'publications': {
-          const bibtex = getBibtexContent('publications.bib');
-          const allPubs = parseBibTeX(bibtex);
-          const filteredPubs = section.filter === 'selected'
-            ? allPubs.filter(p => p.selected)
-            : allPubs;
-          return {
-            ...section,
-            publications: filteredPubs.slice(0, section.limit || 5)
-          };
-        }
-        case 'list': {
-          const newsData = section.source ? getTomlContent<{ news: NewsItem[] }>(section.source) : null;
-          return {
-            ...section,
-            items: newsData?.news || []
-          };
-        }
-        default:
-          return section;
+  // Pre-load data for each section on the server
+  const renderedSections = sections.map(section => {
+    switch (section.type) {
+      case 'markdown': {
+        const content = section.source ? getMarkdownContent(section.source) : '';
+        return (
+          <section key={section.id} id={section.id} className="scroll-mt-24">
+            <About content={content} title={section.title} />
+          </section>
+        );
       }
-    });
-  };
-
-  // Determine which pages to show
-  let pagesToShow: PageData[] = [];
-
-  if (enableOnePageMode) {
-    pagesToShow = config.navigation
-      .filter(item => item.type === 'page')
-      .map(item => {
-        const rawConfig = getPageConfig(item.target);
-        if (!rawConfig) return null;
-
-        const pageConfig = rawConfig as BasePageConfig;
-
-        if (pageConfig.type === 'about' || 'sections' in (rawConfig as object)) {
-          return {
-            type: 'about',
-            id: item.target,
-            sections: processSections((rawConfig as { sections: SectionConfig[] }).sections || [])
-          } as PageData;
-        } else if (pageConfig.type === 'publication') {
-          const pubConfig = pageConfig as PublicationPageConfig;
-          const bibtex = getBibtexContent(pubConfig.source);
-          return {
-            type: 'publication',
-            id: item.target,
-            config: pubConfig,
-            publications: parseBibTeX(bibtex)
-          } as PageData;
-        } else if (pageConfig.type === 'text') {
-          const textConfig = pageConfig as TextPageConfig;
-          return {
-            type: 'text',
-            id: item.target,
-            config: textConfig,
-            content: getMarkdownContent(textConfig.source)
-          } as PageData;
-        } else if (pageConfig.type === 'card') {
-          return {
-            type: 'card',
-            id: item.target,
-            config: pageConfig as CardPageConfig
-          } as PageData;
-        }
+      case 'list': {
+        const data = section.source ? getTomlContent<{ news: NewsItem[] }>(section.source) : null;
+        return (
+          <section key={section.id} id={section.id} className="scroll-mt-24">
+            <News items={data?.news ?? []} title={section.title} />
+          </section>
+        );
+      }
+      case 'publications': {
+        const bibtex = section.source ? getBibtexContent(section.source) : '';
+        const allPubs: Publication[] = parseBibTeX(bibtex);
+        return (
+          <section key={section.id} id={section.id} className="scroll-mt-24">
+            <Publications publications={allPubs} title={section.title} />
+          </section>
+        );
+      }
+      case 'education': {
+        const data = section.source ? getTomlContent<{ items: EducationItem[] }>(section.source) : null;
+        return (
+          <section key={section.id} id={section.id} className="scroll-mt-24">
+            <Education items={data?.items ?? []} title={section.title} />
+          </section>
+        );
+      }
+      case 'experience': {
+        const data = section.source ? getTomlContent<{ items: ExperienceItem[] }>(section.source) : null;
+        return (
+          <section key={section.id} id={section.id} className="scroll-mt-24">
+            <Experience items={data?.items ?? []} title={section.title} />
+          </section>
+        );
+      }
+      case 'awards': {
+        const data = section.source ? getTomlContent<{ items: AwardItem[] }>(section.source) : null;
+        return (
+          <section key={section.id} id={section.id} className="scroll-mt-24">
+            <Awards items={data?.items ?? []} title={section.title} />
+          </section>
+        );
+      }
+      case 'services': {
+        const data = section.source ? getTomlContent<{ items: ServiceItem[] }>(section.source) : null;
+        return (
+          <section key={section.id} id={section.id} className="scroll-mt-24">
+            <Services items={data?.items ?? []} title={section.title} />
+          </section>
+        );
+      }
+      default:
         return null;
-      })
-      .filter((item): item is PageData => item !== null);
-  } else {
-    if (aboutConfig) {
-      pagesToShow = [{
-        type: 'about',
-        id: 'about',
-        sections: processSections((aboutConfig as { sections: SectionConfig[] }).sections || [])
-      }];
     }
-  }
+  });
 
   return (
     <div className="bg-background min-h-screen">
@@ -156,66 +126,11 @@ export default function Home() {
 
         {/* Right Column - Scrollable Content */}
         <div className="lg:ml-[320px] py-8">
-          <div className="space-y-8">
-          {pagesToShow.map((page) => (
-            <section key={page.id} id={page.id} className="scroll-mt-24 space-y-8">
-              {page.type === 'about' && page.sections.map((section: SectionConfig) => {
-                switch (section.type) {
-                  case 'markdown':
-                    return (
-                      <About
-                        key={section.id}
-                        content={section.content || ''}
-                        title={section.title}
-                      />
-                    );
-                  case 'publications':
-                    return (
-                      <SelectedPublications
-                        key={section.id}
-                        publications={section.publications || []}
-                        title={section.title}
-                        enableOnePageMode={enableOnePageMode}
-                      />
-                    );
-                  case 'list':
-                    return (
-                      <News
-                        key={section.id}
-                        items={section.items || []}
-                        title={section.title}
-                      />
-                    );
-                  default:
-                    return null;
-                }
-              })}
-              {page.type === 'publication' && (
-                <PublicationsList
-                  config={page.config}
-                  publications={page.publications}
-                  embedded={true}
-                />
-              )}
-              {page.type === 'text' && (
-                <TextPage
-                  config={page.config}
-                  content={page.content}
-                  embedded={true}
-                />
-              )}
-              {page.type === 'card' && (
-                <CardPage
-                  config={page.config}
-                  embedded={true}
-                />
-              )}
-            </section>
-          ))}
+          <div className="space-y-12">
+            {renderedSections}
           </div>
         </div>
       </div>
     </div>
   );
 }
-
