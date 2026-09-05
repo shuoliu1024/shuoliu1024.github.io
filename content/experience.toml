@@ -1,5 +1,14 @@
 type = "experience"
-title = "Experience"
+title = "Industry Experience"
+
+[[items]]
+organization = "Cortex Robot AI, Inc."
+logo = "/logos/cortex.png"
+logo_dark = "/logos/cortex-dark.png"
+
+[[items.roles]]
+title = "Research Engineer"
+date = "Aug. 2026 - Present"
 
 [[items]]
 organization = "Allen Institute for Artificial Intelligence"

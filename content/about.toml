@@ -26,16 +26,16 @@ title = "Publications"
 source = "publications.bib"
 
 [[sections]]
+id = "experience"
+type = "experience"
+title = "Industry Experience"
+source = "experience.toml"
+
+[[sections]]
 id = "education"
 type = "education"
 title = "Education"
 source = "education.toml"
-
-[[sections]]
-id = "experience"
-type = "experience"
-title = "Experience"
-source = "experience.toml"
 
 [[sections]]
 id = "services"

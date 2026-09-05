@@ -1,11 +1,12 @@
 [site]
 title = "Shuo Liu"
 description = "M.S. student at ECE of the University of Washington."
-favicon = "/happyboy.JPG"
+favicon = "/favicon.svg"
 
 [author]
 name = "Shuo Liu"
 name_zh = "刘朔"
+title = "Research Engineer at Cortex AI"
 avatar = "/shuoliu.jpg"
 
 [social]
@@ -42,15 +43,15 @@ target = "publications"
 href = "/"
 
 [[navigation]]
-title = "Education"
+title = "Industry Experience"
 type = "page"
-target = "education"
+target = "experience"
 href = "/"
 
 [[navigation]]
-title = "Experience"
+title = "Education"
 type = "page"
-target = "experience"
+target = "education"
 href = "/"
 
 [[navigation]]
