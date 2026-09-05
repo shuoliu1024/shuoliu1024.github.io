@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${config.site.title}`
     },
     description: config.site.description,
-    keywords: [config.author.name, "PhD", "Research", ...(config.author.institution ? [config.author.institution] : [])],
+    keywords: [config.author.name, "Research Engineer", "Robot Learning", "Robotics", "Foundation Models", ...(config.author.institution ? [config.author.institution] : [])],
     authors: [{ name: config.author.name }],
     creator: config.author.name,
     publisher: config.author.name,
