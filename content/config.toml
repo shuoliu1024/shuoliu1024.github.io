@@ -1,12 +1,12 @@
 [site]
 title = "Shuo Liu"
-description = "M.S. student at ECE of the University of Washington."
+description = "Senior Research Engineer at Cortex Robot, Inc. Working on robot learning and foundation models for robot manipulation."
 favicon = "/favicon.svg"
 
 [author]
 name = "Shuo Liu"
 name_zh = "刘朔"
-title = "Research Engineer at Cortex AI"
+title = "Senior Research Engineer at Cortex Robot, Inc."
 avatar = "/shuoliu.jpg"
 
 [social]

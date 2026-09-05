@@ -2,12 +2,12 @@ type = "experience"
 title = "Industry Experience"
 
 [[items]]
-organization = "Cortex Robot AI, Inc."
+organization = "Cortex Robot, Inc."
 logo = "/logos/cortex.png"
 logo_dark = "/logos/cortex-dark.png"
 
 [[items.roles]]
-title = "Research Engineer"
+title = "Senior Research Engineer"
 date = "Aug. 2026 - Present"
 
 [[items]]
