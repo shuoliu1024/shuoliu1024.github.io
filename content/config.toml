@@ -1,6 +1,9 @@
 [site]
-title = "Shuo Liu"
-description = "Senior Research Engineer at Cortex Robot, Inc. Working on robot learning and foundation models for robot manipulation."
+title = "Shuo Liu (刘朔) | Robot Learning · Cortex AI · UW"
+url = "https://shuoliu1024.github.io"
+description = "Shuo Liu (刘朔) — Senior Research Engineer at Cortex Robot, Inc. (Cortex AI); M.S. ECE, University of Washington (UW); formerly AI2 PRIOR. Working on RL post-training, Real2Sim2Real, and agentic robotics; co-author of MolmoAct, MolmoAct2, and MolmoSpaces."
+# Paste the content value of Google Search Console's HTML-tag verification here
+google_site_verification = "3Hm_p-1Gc64JPmKEiNZpSozF4C2_5r341vRyovRlGZg"
 favicon = "/favicon.svg"
 
 [author]

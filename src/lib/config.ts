@@ -7,6 +7,8 @@ export interface SiteConfig {
         title: string;
         description: string;
         favicon: string;
+        url?: string;
+        google_site_verification?: string;
         last_updated?: string;
     };
     author: {

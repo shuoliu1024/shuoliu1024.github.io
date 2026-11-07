@@ -5,27 +5,99 @@ import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { getConfig } from "@/lib/config";
 
+const SITE_URL = "https://shuoliu1024.github.io";
+
 export async function generateMetadata(): Promise<Metadata> {
   const config = getConfig();
+  const siteUrl = config.site.url ?? SITE_URL;
+  const avatar = config.author.avatar;
   return {
+    metadataBase: new URL(siteUrl),
     title: {
       default: config.site.title,
-      template: `%s | ${config.site.title}`
+      template: `%s | ${config.author.name}`
     },
     description: config.site.description,
-    keywords: [config.author.name, "Research Engineer", "Robot Learning", "Robotics", "Foundation Models", ...(config.author.institution ? [config.author.institution] : [])],
-    authors: [{ name: config.author.name }],
+    keywords: [
+      config.author.name,
+      ...(config.author.name_zh ? [config.author.name_zh] : []),
+      "Shuo Liu UW",
+      "Senior Research Engineer",
+      "Cortex AI",
+      "Cortex Robot",
+      "University of Washington",
+      "AI2",
+      "Robot Learning",
+      "Robotics",
+      "Reinforcement Learning",
+      "Real2Sim2Real",
+      "Real-to-Sim-to-Real",
+      "Agentic Robotics",
+      "MolmoAct",
+    ],
+    authors: [{ name: config.author.name, url: siteUrl }],
     creator: config.author.name,
     publisher: config.author.name,
+    alternates: { canonical: "/" },
+    robots: { index: true, follow: true },
     icons: {
       icon: config.site.favicon,
     },
     openGraph: {
-      type: "website",
+      type: "profile",
       locale: "en_US",
+      url: siteUrl,
       title: config.site.title,
       description: config.site.description,
-      siteName: `${config.author.name}'s Academic Website`,
+      siteName: config.author.name,
+      images: avatar ? [{ url: avatar, alt: config.author.name }] : undefined,
+    },
+    twitter: {
+      card: "summary",
+      title: config.site.title,
+      description: config.site.description,
+      images: avatar ? [avatar] : undefined,
+    },
+    ...(config.site.google_site_verification
+      ? { verification: { google: config.site.google_site_verification } }
+      : {}),
+  };
+}
+
+function buildPersonJsonLd(config: ReturnType<typeof getConfig>) {
+  const siteUrl = config.site.url ?? SITE_URL;
+  const sameAs = [
+    config.social.google_scholar,
+    config.social.github,
+    config.social.linkedin,
+  ].filter(Boolean);
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url: siteUrl,
+    mainEntity: {
+      "@type": "Person",
+      name: config.author.name,
+      alternateName: config.author.name_zh ? [config.author.name_zh, "Liu Shuo"] : ["Liu Shuo"],
+      url: siteUrl,
+      image: config.author.avatar ? new URL(config.author.avatar, siteUrl).toString() : undefined,
+      email: config.social.email ? `mailto:${config.social.email}` : undefined,
+      jobTitle: "Senior Research Engineer",
+      worksFor: { "@type": "Organization", name: "Cortex Robot, Inc. (Cortex AI)" },
+      description: config.site.description,
+      alumniOf: [
+        { "@type": "CollegeOrUniversity", name: "University of Washington" },
+        { "@type": "CollegeOrUniversity", name: "Southeast University (东南大学)" },
+      ],
+      knowsAbout: [
+        "Robot Learning",
+        "Robot Manipulation",
+        "Reinforcement Learning",
+        "Real-to-Sim-to-Real (Real2Sim2Real)",
+        "Agentic Robotics",
+        "Vision-Language-Action Models",
+      ],
+      sameAs,
     },
   };
 }
@@ -41,6 +113,10 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" href={config.site.favicon} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildPersonJsonLd(config)) }}
+        />
         {/* Speed up font connections */}
         <link rel="dns-prefetch" href="https://google-fonts.jialeliu.com" />
         <link rel="preconnect" href="https://google-fonts.jialeliu.com" crossOrigin="" />
@@ -106,7 +182,13 @@ export default function RootLayout({
           <main className="min-h-screen pt-16 lg:pt-20">
             {children}
           </main>
-          <Footer lastUpdated={config.site.last_updated} />
+          <Footer
+            lastUpdated={
+              config.site.last_updated ??
+              // Computed once at build time so server and client render the same text
+              new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Los_Angeles' })
+            }
+          />
         </ThemeProvider>
       </body>
     </html>
