@@ -2,6 +2,11 @@ type = "awards"
 title = "Awards"
 
 [[items]]
+title = "Best Paper Award"
+organization = "TAG Workshop, CoRL 2026"
+date = "2026"
+
+[[items]]
 title = "Outstanding Paper Award & Oral"
 organization = "FMEA Workshop, CVPR 2026"
 date = "2026"

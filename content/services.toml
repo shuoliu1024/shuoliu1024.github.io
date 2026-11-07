@@ -3,5 +3,20 @@ title = "Services"
 
 [[items]]
 role = "Reviewer"
+venue = "IEEE Transactions on Robotics (T-RO)"
+date = "2026"
+
+[[items]]
+role = "Reviewer"
+venue = "IEEE Robotics and Automation Letters (RA-L)"
+date = "2026"
+
+[[items]]
+role = "Reviewer"
+venue = "IEEE International Conference on Robotics and Automation (ICRA)"
+date = "2027"
+
+[[items]]
+role = "Reviewer"
 venue = "FMEA Workshop, CVPR 2026"
 date = "2026"
